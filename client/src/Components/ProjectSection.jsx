@@ -20,7 +20,7 @@ import kaumudi from "../assets/Kaumudi.png";
 import SnakeLadder from "../assets/snakeLadder.png";
 import TicTacToe from "../assets/ticTacToe.png";
 
-import ProjectCard from "./ProjectCard";
+import ProjectCard from "./ProjectCard.jsx";
 
 const projects = [
   {
