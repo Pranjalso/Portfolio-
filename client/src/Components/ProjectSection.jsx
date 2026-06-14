@@ -1,6 +1,5 @@
 // ProjectSection.jsx
 import React, { useRef, useState, useEffect } from "react";
-import ProjectCard from "./ProjectCard.jsx";
 import { HiArrowSmLeft, HiArrowSmRight } from "react-icons/hi";
 import { FaProjectDiagram, FaGripfire } from "react-icons/fa";
 
@@ -17,12 +16,11 @@ import Coca from "../assets/Coca.jpeg";
 import Interior from "../assets/Interior.jpeg";
 import smartDini from "../assets/smartDini.png";
 import shivGanga from "../assets/shivGanga.png";
-import Kaumudi from "../assets/kaumudi.png";
+import kaumudi from "../assets/Kaumudi.png";
 import SnakeLadder from "../assets/snakeLadder.png";
 import TicTacToe from "../assets/ticTacToe.png";
 
-// Placeholder for new projects (use same image or add new ones)
-import ProjectPlaceholder from "../assets/personal.png";
+import ProjectCard from "./ProjectCard";
 
 const projects = [
   {
@@ -50,7 +48,7 @@ const projects = [
     liveLink: "https://www.hotelshivganga.in/",
   },
    {
-    imgSrc: Kaumudi,
+    imgSrc: kaumudi,
     title: "Kaumudi Sanskrit Academy Website",
     description: "Educational website for Sanskrit academy with course listings, enrollment system, and admin dashboard.",
     techStack: ["React", "Node.js", "Express", "Tailwind CSS","MongoDB"],
