@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import PortfolioCard from "../Components/PortfolioCard";
 import HomeCard from "../Components/HomeCard";
-import AboutCard from "../Components/AboutCard";
 import SkillsSection from "../Components/SkillsSection";
 import ProjectSection from "../Components/ProjectSection";
 import ContactSection from "../Components/ContactSection";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import FloatingTechBackground from "../Components/FloatingTechBackground";
+import WorkExperience from "../Components/WorkExperience";
 
 const Home = () => {
   useEffect(() => {
@@ -18,11 +18,11 @@ const Home = () => {
 
   return (
     <div className="w-[80vw]  mx-auto">
-      <FloatingTechBackground/>
+      <FloatingTechBackground />
       <PortfolioCard />
       <HomeCard />
-      <AboutCard />
       <SkillsSection />
+      <WorkExperience/>
       <ProjectSection />
       <ContactSection />
     </div>

@@ -1,4 +1,18 @@
 import React, { useEffect, useState } from "react";
+import {
+  FaHome,
+  FaUser,
+  FaCode,
+  FaBriefcase,
+  FaEnvelope,
+  FaBars,
+  FaTimes,
+  FaGithub,
+  FaLinkedin,
+  FaDownload,
+  FaProjectDiagram,
+} from "react-icons/fa";
+import { SiLeetcode } from "react-icons/si";
 
 const roles = [
   "Full Stack Developer",
@@ -9,88 +23,371 @@ const roles = [
 
 const PortfolioCard = () => {
   const [index, setIndex] = useState(0);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-  // Change heading every 2 seconds
+  // Change role every 2 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % roles.length);
     }, 2000);
-
     return () => clearInterval(interval);
   }, []);
 
+  // Handle scroll effect for navbar
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Navigation links
+  const navLinks = [
+    { name: "Home", href: "#", icon: <FaHome /> },
+    { name: "About", href: "#about", icon: <FaUser /> },
+    { name: "Skills", href: "#skills", icon: <FaCode /> },
+      { name: "Work", href: "#work", icon: <FaBriefcase /> },
+    { name: "Projects", href: "#projects", icon: <FaProjectDiagram /> },
+  
+    { name: "Contact", href: "#contact", icon: <FaEnvelope /> },
+  ];
+
   return (
-    <div className="min-h-screen flex flex-col lg:flex-row items-center justify-center gap-12 px-6">
-
-      {/* LEFT SIDE – Animated Headings */}
-      <div
-        data-aos="fade-right"
-        data-aos-duration="1500"
-        className="text-white text-center lg:text-left"
+    <>
+      {/* Navigation Menu Bar */}
+      <nav
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+          scrolled
+            ? "bg-gray-900/90 backdrop-blur-xl shadow-lg shadow-black/20 py-3"
+            : "bg-transparent py-5"
+        }`}
       >
-        <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-5 drop-shadow-[0_0_25px_rgba(59,130,246,0.35)]">
-          Hi, I’m{" "}
-          <span className="text-purple-400 drop-shadow-[0_0_30px_rgba(59,130,246,0.6)]">
-            Pranjal Soni
-          </span>
-        </h1>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center">
+            {/* Logo */}
+            <a
+              href="#"
+              className="text-2xl font-bold bg-gradient-to-r from-indigo-400 via-purple-400 to-rose-400 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300"
+            >
+              Pranjal.dev
+            </a>
 
-        {/* Animated Role Text */}
-        <h2
-          key={roles[index]}
-          className="text-2xl sm:text-3xl lg:text-5xl font-semibold h-14
-          animate-[fadeUp_0.6s_ease-out]"
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center gap-1">
+              {navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className="flex items-center gap-2 px-4 py-2 text-gray-300 hover:text-white rounded-lg transition-all duration-300 hover:bg-white/10 group"
+                >
+                  <span className="text-indigo-400 group-hover:scale-110 transition-transform">
+                    {link.icon}
+                  </span>
+                  <span className="text-sm font-medium">{link.name}</span>
+                </a>
+              ))}
+            </div>
+
+            {/* Resume Button - Desktop */}
+            <div className="hidden md:block">
+              <a
+                href="/Pranjal_Soni_Resume.pdf"
+                download="Pranjal_Soni_Resume.pdf"
+                className="flex items-center gap-2 px-5 py-2 bg-gradient-to-r from-indigo-500 to-rose-500 rounded-full text-white text-sm font-medium hover:shadow-lg hover:shadow-indigo-500/30 transition-all duration-300 hover:scale-105"
+              >
+                <FaDownload className="text-xs" />
+                Resume
+              </a>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="md:hidden w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300"
+            >
+              {mobileMenuOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Navigation Menu */}
+        <div
+          className={`md:hidden fixed top-[72px] left-0 w-full bg-gray-900/95 backdrop-blur-xl border-b border-white/10 transition-all duration-300 overflow-hidden ${
+            mobileMenuOpen ? "max-h-96 py-4" : "max-h-0 py-0"
+          }`}
         >
-          {roles[index]}
-        </h2>
+          <div className="flex flex-col gap-2 px-4">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center gap-3 px-4 py-3 text-gray-300 hover:text-white rounded-lg hover:bg-white/10 transition-all duration-300"
+              >
+                <span className="text-indigo-400">{link.icon}</span>
+                <span className="font-medium">{link.name}</span>
+              </a>
+            ))}
+            {/* Resume Button - Mobile */}
+            <a
+              href="/Pranjal_Soni_Resume.pdf"
+              download="Pranjal_Soni_Resume.pdf"
+              className="flex items-center gap-3 px-4 py-3 mt-2 bg-gradient-to-r from-indigo-500 to-rose-500 rounded-full text-white text-sm font-medium justify-center"
+            >
+              <FaDownload className="text-xs" />
+              Download Resume
+            </a>
+          </div>
+        </div>
+      </nav>
 
-        <p className="mt-6 text-gray-300 max-w-md text-base sm:text-lg lg:text-xl leading-relaxed">
-          I design and develop optimized web and mobile applications that
-          deliver seamless user experiences and real business value.
-        </p>
+      {/* Hero Section */}
+      <div className="min-h-screen flex flex-col lg:flex-row items-center justify-center gap-12 px-6 pt-20 relative overflow-hidden">
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-indigo-500/10 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-rose-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-3xl animate-pulse delay-2000" />
+          
+          {/* Floating Particles */}
+          {[...Array(20)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-1 h-1 bg-white/20 rounded-full animate-float-particle"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 5}s`,
+                animationDuration: `${3 + Math.random() * 5}s`,
+              }}
+            />
+          ))}
+        </div>
+
+        {/* LEFT SIDE – Animated Content */}
+        <div
+          data-aos="fade-right"
+          data-aos-duration="1500"
+          className="text-white text-center lg:text-left z-10 max-w-2xl"
+        >
+          {/* Greeting Badge */}
+          <div className="inline-flex items-center gap-2 bg-white/5 backdrop-blur-sm px-4 py-2 rounded-full mb-6 border border-white/10">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            <span className="text-gray-300 text-sm">Available for opportunities</span>
+          </div>
+
+          {/* Main Heading */}
+          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-4">
+            Hi, I'm{" "}
+            <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-rose-400 bg-clip-text text-transparent animate-gradient">
+              Pranjal Soni
+            </span>
+          </h1>
+
+          {/* Animated Role Text with Typing Effect */}
+          <div className="h-20 sm:h-24">
+            <h2 className="text-2xl sm:text-3xl lg:text-5xl font-semibold">
+              <span className="text-gray-400">&lt;</span>
+              <span
+                key={roles[index]}
+                className="text-transparent bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text animate-fade-up inline-block"
+              >
+                {roles[index]}
+              </span>
+              <span className="text-gray-400 animate-pulse">/&gt;</span>
+            </h2>
+          </div>
+
+          {/* Description */}
+          <p className="mt-6 text-gray-300 text-base sm:text-lg lg:text-xl leading-relaxed max-w-lg mx-auto lg:mx-0">
+            I design and develop optimized web and mobile applications that
+            deliver seamless user experiences and real business value. 
+            Specializing in <span className="text-indigo-400">MERN Stack</span> and 
+            <span className="text-purple-400"> modern web technologies</span>.
+          </p>
+
+          {/* CTA Buttons */}
+          <div className="flex flex-wrap gap-4 justify-center lg:justify-start mt-8">
+            <a
+              href="#work"
+              className="group relative px-8 py-3 bg-gradient-to-r from-indigo-500 to-rose-500 rounded-full text-white font-semibold overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-indigo-500/30"
+            >
+              <span className="relative z-10">View My Work</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-rose-500 to-indigo-500 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+            </a>
+            <a
+              href="#contact"
+              className="px-8 py-3 bg-white/10 backdrop-blur-sm border border-white/30 rounded-full text-white font-semibold hover:bg-white/20 transition-all duration-300 hover:scale-105 hover:border-indigo-500/50"
+            >
+              Contact Me
+            </a>
+          </div>
+
+          {/* Social Links */}
+          <div className="flex gap-4 justify-center lg:justify-start mt-8">
+            <a
+              href="https://github.com/Pranjalso"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-gradient-to-r hover:from-indigo-500 hover:to-rose-500 transition-all duration-300 hover:scale-110 hover:shadow-lg"
+            >
+              <FaGithub className="text-white text-xl" />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/pranjalsoni-mernstack"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-gradient-to-r hover:from-indigo-500 hover:to-rose-500 transition-all duration-300 hover:scale-110 hover:shadow-lg"
+            >
+              <FaLinkedin className="text-white text-xl" />
+            </a>
+            <a
+              href="https://leetcode.com/u/Pranjalso/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-gradient-to-r hover:from-indigo-500 hover:to-rose-500 transition-all duration-300 hover:scale-110 hover:shadow-lg"
+            >
+              <SiLeetcode className="text-white text-xl" />
+            </a>
+          </div>
+        </div>
+
+        {/* RIGHT SIDE – Portfolio Card (Enhanced) */}
+        <div
+          data-aos="flip-left"
+          data-aos-easing="ease-out-cubic"
+          data-aos-duration="2000"
+          className="relative group"
+        >
+          {/* Glow Effect Behind Card */}
+          <div className="absolute -inset-4 bg-gradient-to-r from-indigo-500/30 via-purple-500/30 to-rose-500/30 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+          
+          {/* Card */}
+          <div className="relative w-[90vw] sm:w-[65vw] lg:w-[28vw] backdrop-blur-xl bg-white/5 border border-white/20 rounded-2xl p-8 hover:scale-[1.02] transition-all duration-500 shadow-2xl hover:shadow-[0_0_50px_rgba(99,102,241,0.3)]">
+            
+            {/* Decorative Line */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-rose-500 rounded-full" />
+            
+            {/* Card Header */}
+            <div className="flex justify-between items-start mb-4">
+              <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-indigo-400 to-rose-400 bg-clip-text text-transparent">
+                Portfolio<span className="text-white">*</span>
+              </h3>
+              <div className="flex gap-1">
+                <div className="w-3 h-3 rounded-full bg-red-500" />
+                <div className="w-3 h-3 rounded-full bg-yellow-500" />
+                <div className="w-3 h-3 rounded-full bg-green-500" />
+              </div>
+            </div>
+
+            {/* Card Content */}
+            <div className="space-y-4">
+              <div className="border-b border-white/20 pb-3">
+                <h4 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-white">
+                  Pranjal Soni
+                </h4>
+                <p className="text-gray-400 text-sm">MERN Stack Developer</p>
+              </div>
+
+              <div className="space-y-2">
+                <p className="text-gray-300 text-base sm:text-lg leading-relaxed">
+                  🚀 <span className="text-indigo-400">5+</span> Projects Completed
+                </p>
+                <p className="text-gray-300 text-base sm:text-lg leading-relaxed">
+                  💻 <span className="text-purple-400">100+</span> DSA Problems
+                </p>
+                <p className="text-gray-300 text-base sm:text-lg leading-relaxed">
+                  🎓 <span className="text-rose-400">9.36</span> CGPA
+                </p>
+              </div>
+
+              {/* Tech Stack Icons */}
+              <div className="pt-4 border-t border-white/20">
+                <p className="text-gray-400 text-sm mb-3">Tech Stack</p>
+                <div className="flex flex-wrap gap-2">
+                  {["React", "Node.js", "MongoDB", "Express", "Next.js", "TypeScript"].map((tech) => (
+                    <span
+                      key={tech}
+                      className="text-xs px-3 py-1 rounded-full bg-white/10 text-gray-300 border border-white/10"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Decorative Code Line */}
+              <div className="pt-2">
+                <p className="text-gray-500 text-xs font-mono">
+                  <span className="text-indigo-400">const</span> developer = {"{"}<br />
+                  &nbsp;&nbsp;name: <span className="text-green-400">"Pranjal Soni"</span>,<br />
+                  &nbsp;&nbsp;passion: <span className="text-yellow-400">"Coding & Creating"</span><br />
+                  {"}"};
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      {/* RIGHT SIDE – Portfolio Card */}
-      <div
-        data-aos="flip-left"
-        data-aos-easing="ease-out-cubic"
-        data-aos-duration="2000"
-        className="text-white w-[90vw] sm:w-[65vw] lg:w-[32vw]
-        backdrop-blur-xl bg-white/5
-        border border-white/20 rounded-2xl p-7
-        hover:scale-[1.04]
-        transition-all duration-500
-        shadow-[0_0_40px_rgba(0,0,0,0.7)]
-        hover:shadow-[0_0_70px_rgba(59,130,246,0.35)]"
-      >
-        <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold py-4 border-b border-white/20 drop-shadow-md">
-          Portfolio*
-        </h3>
-
-        <h4 className="text-xl sm:text-2xl lg:text-3xl py-4 border-b border-white/20 drop-shadow-sm">
-          Pranjal Soni
-        </h4>
-
-        <p className="text-lg sm:text-xl lg:text-2xl mt-4 text-gray-300 leading-relaxed">
-          MERN Stack Developer <br />
-          Web & App Development
-        </p>
-      </div>
-
-      {/* Inline animation for role text */}
+      {/* Custom Animations */}
       <style>{`
         @keyframes fadeUp {
           from {
             opacity: 0;
-            transform: translateY(15px);
+            transform: translateY(20px);
           }
           to {
             opacity: 1;
             transform: translateY(0);
           }
         }
+        
+        @keyframes gradient {
+          0%, 100% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+        }
+        
+        @keyframes float-particle {
+          0%, 100% {
+            transform: translateY(0px) translateX(0px);
+            opacity: 0;
+          }
+          50% {
+            opacity: 0.5;
+          }
+          25% {
+            transform: translateY(-20px) translateX(10px);
+          }
+          75% {
+            transform: translateY(20px) translateX(-10px);
+          }
+        }
+        
+        .animate-fade-up {
+          animation: fadeUp 0.5s ease-out;
+          display: inline-block;
+        }
+        
+        .animate-gradient {
+          background-size: 200% auto;
+          animation: gradient 3s ease infinite;
+        }
+        
+        .animate-float-particle {
+          animation: float-particle linear infinite;
+        }
       `}</style>
-    </div>
+    </>
   );
 };
 

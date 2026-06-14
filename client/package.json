@@ -10,7 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "aos": "^3.0.0-beta.6",
+    "baseline-browser-mapping": "^2.10.37",
+    "caniuse-lite": "^1.0.30001799",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-icons": "^5.5.0"
