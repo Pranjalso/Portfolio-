@@ -3,7 +3,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { HiArrowSmLeft, HiArrowSmRight } from "react-icons/hi";
 import { FaProjectDiagram, FaGripfire } from "react-icons/fa";
 
-// Import Images
+// Import Images - FIXED CASING to match your actual files
 import Food from "../assets/Food.jpeg";
 import Magma from "../assets/Magma.jpeg";
 import Ecom from "../assets/Ecom.jpeg";
@@ -16,9 +16,9 @@ import Coca from "../assets/Coca.jpeg";
 import Interior from "../assets/Interior.jpeg";
 import smartDini from "../assets/smartDini.png";
 import shivGanga from "../assets/shivGanga.png";
-import kaumudi from "../assets/Kaumudi.png";
-import SnakeLadder from "../assets/snakeLadder.png";
-import TicTacToe from "../assets/ticTacToe.png";
+import kaumudi from "../assets/Kaumudi.png";        // ✅ Capital K
+import SnakeLadder from "../assets/SnakeLadder.png"; // ✅ Capital S
+import TicTacToe from "../assets/TicTacToe.png";    // ✅ Capital T
 
 import ProjectCard from "./ProjectCard.jsx";
 
@@ -31,7 +31,7 @@ const projects = [
     githubLink: "https://github.com/Pranjalso/Grocery-App-MERN",
     liveLink: "https://grocery-app-mern-frontend.vercel.app/",
   },
-   {
+  {
     imgSrc: smartDini,
     title: "Smart Dini App",
     description: "Multi-restaurant platform with role-based access control (Super Admin & Admin).",
@@ -39,23 +39,23 @@ const projects = [
     githubLink: "https://github.com/Pranjalso/SmartDini-Backend",
     liveLink: "https://smart-dini-backend.vercel.app/",
   },
-{
+  {
     imgSrc: shivGanga,
     title: "Shiv Ganga Hotel Website",
     description: "Responsive hotel website with modern design, smooth scrolling, and interactive UI elements.",
-    techStack: ["React", "Node.js", "Express", "Tailwind CSS","MongoDB"],
+    techStack: ["React", "Node.js", "Express", "Tailwind CSS", "MongoDB"],
     githubLink: "https://github.com/Pranjalso/Shiv-Ganga-Graphura",
     liveLink: "https://www.hotelshivganga.in/",
   },
-   {
+  {
     imgSrc: kaumudi,
     title: "Kaumudi Sanskrit Academy Website",
     description: "Educational website for Sanskrit academy with course listings, enrollment system, and admin dashboard.",
-    techStack: ["React", "Node.js", "Express", "Tailwind CSS","MongoDB"],
+    techStack: ["React", "Node.js", "Express", "Tailwind CSS", "MongoDB"],
     githubLink: "https://github.com/Pranjalso/Kaumudi-Sankrit-Academy-Website",
     liveLink: "https://kaumudi-academy.vercel.app/",
   },
-   {
+  {
     imgSrc: SnakeLadder,
     title: "Snake & Ladder Game",
     description: "Classic board game with modern UI and smooth animations.",
@@ -63,7 +63,7 @@ const projects = [
     githubLink: "https://github.com/Pranjalso/Snake-Ladder-Game-with-MultiPlayer",
     liveLink: "https://snake-ladder-game-with-multi-player.vercel.app/",
   },
-   {
+  {
     imgSrc: TicTacToe,
     title: "Tic Tac Toe Game",
     description: "Classic Tic Tac Toe game with modern UI and smooth animations.",
@@ -71,7 +71,7 @@ const projects = [
     githubLink: "https://github.com/Pranjalso/Tic-Tac-Toe-with-framer-motion",
     liveLink: "https://tic-tac-toe-game-7laq.onrender.com/",
   },
-   {
+  {
     imgSrc: Ecom,
     title: "E-Commerce",
     description: "Responsive clothing e-commerce website with product filtering and cart functionality.",
@@ -87,7 +87,6 @@ const projects = [
     githubLink: "https://github.com/Pranjalso/Duo-studio-website-clone",
     liveLink: null,
   },
- 
   {
     imgSrc: Food,
     title: "Restaurant App",
@@ -144,8 +143,6 @@ const projects = [
     githubLink: "https://github.com/Pranjalso/Magma-Website-/tree/master",
     liveLink: null,
   },
-
-  
 ];
 
 const ProjectSection = () => {
@@ -247,10 +244,7 @@ const ProjectSection = () => {
         <div className="flex justify-center items-center gap-3 mt-6">
           <div className="flex gap-1">
             {[...Array(5)].map((_, i) => (
-              <div
-                key={i}
-                className="w-1.5 h-1.5 rounded-full bg-gray-600"
-              />
+              <div key={i} className="w-1.5 h-1.5 rounded-full bg-gray-600" />
             ))}
           </div>
           <span className="text-gray-500 text-xs">Scroll to explore →</span>
@@ -260,13 +254,6 @@ const ProjectSection = () => {
       <style>{`
         div::-webkit-scrollbar {
           display: none;
-        }
-        
-        .line-clamp-2 {
-          display: -webkit-box;
-          -webkit-line-clamp: 2;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
         }
       `}</style>
     </section>
