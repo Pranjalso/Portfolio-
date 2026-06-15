@@ -131,6 +131,12 @@ const FloatingTechBackground = () => {
           delay,
         } = positions[index];
         
+        // Adjust size based on screen size (will be overridden by CSS for mobile)
+        const getResponsiveSize = () => {
+          // Base size is set in inline style, but we'll let CSS handle responsiveness
+          return size;
+        };
+        
         // Lighter color variations with reduced opacity for better UI
         const getIconColor = () => {
           const colors = [
@@ -155,8 +161,8 @@ const FloatingTechBackground = () => {
         return (
           <Icon
             key={index}
-            size={size}
-            className={`absolute ${getIconColor()} drop-shadow-sm transition-all duration-500 hover:opacity-40 hover:scale-110`}
+            size={getResponsiveSize()}
+            className={`absolute ${getIconColor()} drop-shadow-sm transition-all duration-500 hover:opacity-40 hover:scale-110 responsive-icon`}
             style={{
               left: `${left}%`,
               top: `${top}%`,
@@ -170,23 +176,40 @@ const FloatingTechBackground = () => {
         );
       })}
       
-      {/* Additional floating particles - lighter */}
+      {/* Additional floating particles - lighter with responsive count */}
       <div className="absolute inset-0">
-        {[...Array(40)].map((_, i) => (
-          <div
-            key={`particle-${i}`}
-            className="absolute w-0.5 h-0.5 bg-white/10 rounded-full"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animation: `pulse ${Math.random() * 8 + 4}s infinite`,
-              animationDelay: `${Math.random() * 5}s`,
-            }}
-          />
-        ))}
+        {typeof window !== 'undefined' && window.innerWidth < 640 ? (
+          // Fewer particles on mobile for better performance
+          [...Array(20)].map((_, i) => (
+            <div
+              key={`particle-${i}`}
+              className="absolute w-0.5 h-0.5 bg-white/10 rounded-full responsive-particle"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animation: `pulse ${Math.random() * 8 + 4}s infinite`,
+                animationDelay: `${Math.random() * 5}s`,
+              }}
+            />
+          ))
+        ) : (
+          // More particles on desktop for better visual
+          [...Array(40)].map((_, i) => (
+            <div
+              key={`particle-${i}`}
+              className="absolute w-0.5 h-0.5 bg-white/10 rounded-full responsive-particle"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animation: `pulse ${Math.random() * 8 + 4}s infinite`,
+                animationDelay: `${Math.random() * 5}s`,
+              }}
+            />
+          ))
+        )}
       </div>
 
-      {/* Animation Styles */}
+      {/* Animation Styles with Responsive Adjustments */}
       <style>{`
         @keyframes floatTech0 {
           0% {
@@ -253,9 +276,88 @@ const FloatingTechBackground = () => {
           }
         }
         
-        @media (max-width: 768px) {
-          .animate-floatTech {
+        /* Responsive Icon Sizes */
+        @media (max-width: 640px) {
+          .responsive-icon {
+            transform: scale(0.6);
+          }
+          .responsive-particle {
+            display: none;
+          }
+        }
+        
+        @media (min-width: 641px) and (max-width: 768px) {
+          .responsive-icon {
             transform: scale(0.7);
+          }
+        }
+        
+        @media (min-width: 769px) and (max-width: 1024px) {
+          .responsive-icon {
+            transform: scale(0.85);
+          }
+        }
+        
+        @media (min-width: 1025px) {
+          .responsive-icon {
+            transform: scale(1);
+          }
+        }
+        
+        /* Animation adjustments for mobile */
+        @media (max-width: 768px) {
+          @keyframes floatTech0 {
+            0% {
+              transform: translateY(0px) translateX(0px) rotate(0deg);
+            }
+            25% {
+              transform: translateY(-15px) translateX(8px) rotate(8deg);
+            }
+            50% {
+              transform: translateY(-25px) translateX(15px) rotate(0deg);
+            }
+            75% {
+              transform: translateY(-15px) translateX(8px) rotate(-8deg);
+            }
+            100% {
+              transform: translateY(0px) translateX(0px) rotate(0deg);
+            }
+          }
+          
+          @keyframes floatTech1 {
+            0% {
+              transform: translateY(0px) translateX(0px) rotate(0deg);
+            }
+            33% {
+              transform: translateY(-10px) translateX(-12px) rotate(6deg);
+            }
+            66% {
+              transform: translateY(-20px) translateX(-6px) rotate(-6deg);
+            }
+            100% {
+              transform: translateY(0px) translateX(0px) rotate(0deg);
+            }
+          }
+          
+          @keyframes floatTech2 {
+            0% {
+              transform: translateY(0px) translateX(0px) rotate(0deg);
+            }
+            20% {
+              transform: translateY(-18px) translateX(-10px) rotate(10deg);
+            }
+            40% {
+              transform: translateY(-30px) translateX(0px) rotate(0deg);
+            }
+            60% {
+              transform: translateY(-18px) translateX(10px) rotate(-10deg);
+            }
+            80% {
+              transform: translateY(-6px) translateX(5px) rotate(-3deg);
+            }
+            100% {
+              transform: translateY(0px) translateX(0px) rotate(0deg);
+            }
           }
         }
       `}</style>

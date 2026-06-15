@@ -16,9 +16,9 @@ import Coca from "../assets/Coca.jpeg";
 import Interior from "../assets/Interior.jpeg";
 import smartDini from "../assets/smartDini.png";
 import shivGanga from "../assets/shivGanga.png";
-import kaumudi from "../assets/Kaumudi.png";        // ✅ Capital K
-import SnakeLadder from "../assets/SnakeLadder.png"; // ✅ Capital S
-import TicTacToe from "../assets/TicTacToe.png";    // ✅ Capital T
+import kaumudi from "../assets/Kaumudi.png";
+import SnakeLadder from "../assets/SnakeLadder.png";
+import TicTacToe from "../assets/TicTacToe.png";
 
 import ProjectCard from "./ProjectCard.jsx";
 
@@ -175,48 +175,48 @@ const ProjectSection = () => {
   };
 
   return (
-    <section id="projects" className="py-16 px-4 sm:px-6 lg:px-8 relative">
+    <section id="projects" className="relative py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8">
       {/* Background Decoration */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-500/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-80 h-80 bg-rose-500/5 rounded-full blur-3xl" />
+        <div className="absolute top-0 right-0 w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 bg-indigo-500/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-40 h-40 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-80 lg:h-80 bg-rose-500/5 rounded-full blur-3xl" />
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
-        {/* Section Header */}
-        <div className="text-center mb-10" data-aos="fade-up">
-          <div className="inline-flex items-center gap-2 bg-indigo-500/10 px-4 py-1.5 rounded-full mb-4">
-            <FaProjectDiagram className="text-indigo-400 text-sm" />
-            <span className="text-indigo-400 text-xs font-medium tracking-wider uppercase">My Portfolio</span>
-            <FaGripfire className="text-rose-400 text-sm" />
+        {/* Section Header - Responsive */}
+        <div className="text-center mb-6 sm:mb-8 md:mb-10 lg:mb-12" data-aos="fade-up">
+          <div className="inline-flex items-center gap-2 bg-indigo-500/10 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full mb-3 sm:mb-4">
+            <FaProjectDiagram className="text-indigo-400 text-[11px] sm:text-sm" />
+            <span className="text-indigo-400 text-[9px] sm:text-[10px] md:text-xs font-medium tracking-wider uppercase">My Portfolio</span>
+            <FaGripfire className="text-rose-400 text-[11px] sm:text-sm" />
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">
             <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-rose-400 bg-clip-text text-transparent">
               Featured Projects
             </span>
           </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto mt-4 text-sm">
+          <p className="text-gray-400 max-w-2xl mx-auto mt-2 sm:mt-3 md:mt-4 text-xs sm:text-sm">
             A collection of my best work — from full-stack applications to creative websites
           </p>
-          <div className="w-16 h-0.5 bg-gradient-to-r from-indigo-500 to-rose-500 rounded-full mx-auto mt-4" />
+          <div className="w-12 sm:w-16 h-0.5 bg-gradient-to-r from-indigo-500 to-rose-500 rounded-full mx-auto mt-3 sm:mt-4" />
         </div>
 
         {/* Projects Container */}
         <div className="relative">
-          {/* Left Arrow */}
+          {/* Left Arrow - Responsive */}
           {showLeftArrow && (
             <button
               onClick={() => scroll("left")}
-              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 hidden md:flex w-10 h-10 rounded-full bg-gray-800/80 backdrop-blur-sm border border-gray-700 items-center justify-center text-white hover:bg-indigo-500 transition-all duration-300 hover:scale-110 shadow-lg"
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 hidden md:flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-gray-800/80 backdrop-blur-sm border border-gray-700 text-white hover:bg-indigo-500 transition-all duration-300 hover:scale-110 shadow-lg"
             >
-              <HiArrowSmLeft className="text-2xl" />
+              <HiArrowSmLeft className="text-lg sm:text-xl md:text-2xl" />
             </button>
           )}
 
-          {/* Projects Scroll Container */}
+          {/* Projects Scroll Container - Responsive Gap */}
           <div
             ref={scrollRef}
-            className="flex overflow-x-auto gap-6 pb-6 scroll-smooth px-2"
+            className="flex overflow-x-auto gap-4 sm:gap-5 md:gap-6 pb-4 sm:pb-5 md:pb-6 scroll-smooth px-2"
             style={{
               scrollbarWidth: "none",
               msOverflowStyle: "none",
@@ -229,31 +229,41 @@ const ProjectSection = () => {
             ))}
           </div>
 
-          {/* Right Arrow */}
+          {/* Right Arrow - Responsive */}
           {showRightArrow && (
             <button
               onClick={() => scroll("right")}
-              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 hidden md:flex w-10 h-10 rounded-full bg-gray-800/80 backdrop-blur-sm border border-gray-700 items-center justify-center text-white hover:bg-indigo-500 transition-all duration-300 hover:scale-110 shadow-lg"
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 hidden md:flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-gray-800/80 backdrop-blur-sm border border-gray-700 text-white hover:bg-indigo-500 transition-all duration-300 hover:scale-110 shadow-lg"
             >
-              <HiArrowSmRight className="text-2xl" />
+              <HiArrowSmRight className="text-lg sm:text-xl md:text-2xl" />
             </button>
           )}
         </div>
 
-        {/* Scroll Indicator */}
-        <div className="flex justify-center items-center gap-3 mt-6">
-          <div className="flex gap-1">
+        {/* Scroll Indicator - Responsive */}
+        <div className="flex flex-col items-center justify-center gap-2 sm:gap-3 mt-4 sm:mt-5 md:mt-6">
+          <div className="flex gap-1 sm:gap-1.5">
             {[...Array(5)].map((_, i) => (
-              <div key={i} className="w-1.5 h-1.5 rounded-full bg-gray-600" />
+              <div
+                key={i}
+                className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-gray-600"
+              />
             ))}
           </div>
-          <span className="text-gray-500 text-xs">Scroll to explore →</span>
+          <span className="text-gray-500 text-[10px] sm:text-xs">← Scroll to explore →</span>
         </div>
       </div>
 
+      {/* Hide scrollbar */}
       <style>{`
         div::-webkit-scrollbar {
           display: none;
+        }
+        
+        @media (max-width: 640px) {
+          .scroll-smooth {
+            scroll-behavior: smooth;
+          }
         }
       `}</style>
     </section>

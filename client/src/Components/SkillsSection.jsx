@@ -51,7 +51,7 @@ const SkillsSection = () => {
     { id: "tools", name: "Tools & More", icon: <FaCode />, gradient: "from-pink-500 to-rose-500" },
   ];
 
-  // All Skills Data (removed Firebase, Java, Python)
+  // All Skills Data
   const skills = [
     // Frontend
     { name: "React.js", category: "frontend", icon: <FaReact />, level: 90, color: "#61DAFB", desc: "UI Library" },
@@ -89,7 +89,6 @@ const SkillsSection = () => {
     ? skills 
     : skills.filter(skill => skill.category === activeCategory);
 
-  // Animate counters when section comes into view
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -126,7 +125,6 @@ const SkillsSection = () => {
     }
   }, [isVisible, activeCategory]);
 
-  // Get category color
   const getCategoryColor = (category) => {
     const colors = {
       frontend: "from-cyan-500 to-blue-500",
@@ -142,18 +140,18 @@ const SkillsSection = () => {
     <section
       ref={sectionRef}
       id="skills"
-      className="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
+      className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden"
     >
-      {/* Animated Background */}
+      {/* Animated Background - Responsive Sizing */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-500/5 via-transparent to-transparent" />
         {[...Array(3)].map((_, i) => (
           <div
             key={i}
-            className="absolute rounded-full blur-3xl animate-pulse"
+            className="absolute rounded-full blur-2xl sm:blur-3xl animate-pulse"
             style={{
-              width: `${300 + i * 150}px`,
-              height: `${300 + i * 150}px`,
+              width: `${200 + i * 100}px`,
+              height: `${200 + i * 100}px`,
               background: `radial-gradient(circle, ${
                 i === 0 ? "rgba(99,102,241,0.08)" : i === 1 ? "rgba(236,72,153,0.06)" : "rgba(6,182,212,0.04)"
               }, transparent)`,
@@ -166,32 +164,32 @@ const SkillsSection = () => {
       </div>
 
       <div className="max-w-6xl mx-auto relative z-10">
-        {/* Section Header with Glow */}
-        <div className="text-center mb-14" data-aos="fade-up">
-          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-indigo-500/20 to-rose-500/20 px-5 py-2 rounded-full mb-5 backdrop-blur-sm border border-indigo-500/20">
-            <GiStarSwirl className="text-yellow-400 text-sm animate-spin-slow" />
-            <span className="text-indigo-400 text-xs font-medium tracking-wider uppercase">
+        {/* Section Header - Responsive */}
+        <div className="text-center mb-8 sm:mb-10 md:mb-12 lg:mb-14" data-aos="fade-up">
+          <div className="inline-flex items-center gap-1.5 sm:gap-2 bg-gradient-to-r from-indigo-500/20 to-rose-500/20 px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 rounded-full mb-4 sm:mb-5 backdrop-blur-sm border border-indigo-500/20">
+            <GiStarSwirl className="text-yellow-400 text-[10px] sm:text-sm animate-spin-slow" />
+            <span className="text-indigo-400 text-[9px] sm:text-[10px] md:text-xs font-medium tracking-wider uppercase">
               My Arsenal
             </span>
-            <FaRocket className="text-rose-400 text-sm animate-bounce" />
+            <FaRocket className="text-rose-400 text-[10px] sm:text-sm animate-bounce" />
           </div>
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 sm:mb-4">
             <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-rose-400 bg-clip-text text-transparent animate-gradient">
               Technical Skills
             </span>
           </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto text-base sm:text-lg">
+          <p className="text-gray-400 max-w-2xl mx-auto text-xs sm:text-sm md:text-base lg:text-lg">
             Technologies and tools I master to build exceptional digital experiences
           </p>
         </div>
 
-        {/* Category Filter - Modern Design */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12" data-aos="fade-up" data-aos-delay="100">
+        {/* Category Filter - Responsive */}
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-10 md:mb-12" data-aos="fade-up" data-aos-delay="100">
           {categories.map((category) => (
             <button
               key={category.id}
               onClick={() => setActiveCategory(category.id)}
-              className={`group relative px-5 py-2.5 rounded-full font-medium transition-all duration-300 overflow-hidden ${
+              className={`group relative px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 rounded-full font-medium transition-all duration-300 overflow-hidden ${
                 activeCategory === category.id
                   ? "text-white"
                   : "bg-gray-800/40 text-gray-400 hover:text-gray-200 border border-gray-700/50"
@@ -200,16 +198,16 @@ const SkillsSection = () => {
               {activeCategory === category.id && (
                 <div className={`absolute inset-0 bg-gradient-to-r ${category.gradient} opacity-90`} />
               )}
-              <span className="relative z-10 flex items-center gap-2">
-                <span className="text-lg">{category.icon}</span>
-                <span className="text-sm">{category.name}</span>
+              <span className="relative z-10 flex items-center gap-1.5 sm:gap-2">
+                <span className="text-base sm:text-lg">{category.icon}</span>
+                <span className="text-[10px] sm:text-xs md:text-sm">{category.name}</span>
               </span>
             </button>
           ))}
         </div>
 
-        {/* Skills Grid - Stunning Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Skills Grid - Responsive */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
           {filteredSkills.map((skill, index) => (
             <div
               key={skill.name}
@@ -219,52 +217,48 @@ const SkillsSection = () => {
               onMouseLeave={() => setHoveredSkill(null)}
               className="group relative"
             >
-              {/* Glow Effect on Hover */}
               <div
                 className="absolute -inset-0.5 bg-gradient-to-r opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"
                 style={{ background: `linear-gradient(135deg, ${skill.color}40, ${skill.color}00)` }}
               />
               
-              {/* Card */}
-              <div className="relative bg-gray-800/30 backdrop-blur-sm rounded-2xl p-5 border border-gray-700/50 group-hover:border-transparent transition-all duration-500 group-hover:-translate-y-2">
+              <div className="relative bg-gray-800/30 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-5 border border-gray-700/50 group-hover:border-transparent transition-all duration-500 group-hover:-translate-y-2">
                 
-                {/* Skill Header with Icon */}
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex items-center gap-3">
+                <div className="flex items-start justify-between mb-3 sm:mb-4">
+                  <div className="flex items-center gap-2 sm:gap-3">
                     <div
-                      className="w-14 h-14 rounded-xl flex items-center justify-center text-2xl transition-all duration-300 group-hover:scale-110 group-hover:rotate-6"
+                      className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-lg sm:rounded-xl flex items-center justify-center text-xl sm:text-2xl transition-all duration-300 group-hover:scale-110 group-hover:rotate-6"
                       style={{ 
                         background: `linear-gradient(135deg, ${skill.color}20, ${skill.color}05)`,
                         boxShadow: hoveredSkill === skill.name ? `0 0 20px ${skill.color}30` : "none"
                       }}
                     >
-                      <span style={{ color: skill.color }}>{skill.icon}</span>
+                      <span style={{ color: skill.color }} className="text-base sm:text-xl md:text-2xl">{skill.icon}</span>
                     </div>
                     <div>
-                      <h3 className="text-white font-bold text-lg group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-gray-300 group-hover:bg-clip-text transition-all duration-300">
+                      <h3 className="text-white font-bold text-sm sm:text-base md:text-lg group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-gray-300 group-hover:bg-clip-text transition-all duration-300">
                         {skill.name}
                       </h3>
-                      <p className="text-gray-500 text-xs">{skill.desc}</p>
+                      <p className="text-gray-500 text-[10px] sm:text-xs">{skill.desc}</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-1">
-                    <FaStar className="text-yellow-500/50 text-xs" />
-                    <span className="text-gray-400 text-xs">Expert</span>
+                  <div className="flex items-center gap-0.5 sm:gap-1">
+                    <FaStar className="text-yellow-500/50 text-[8px] sm:text-xs" />
+                    <span className="text-gray-400 text-[9px] sm:text-xs">Expert</span>
                   </div>
                 </div>
 
-                {/* Progress Bar with Glow */}
-                <div className="space-y-2">
-                  <div className="flex justify-between text-sm">
+                <div className="space-y-1.5 sm:space-y-2">
+                  <div className="flex justify-between text-[11px] sm:text-sm">
                     <span className="text-gray-400">Mastery</span>
                     <span 
-                      className="font-bold transition-all duration-300"
+                      className="font-bold transition-all duration-300 text-xs sm:text-sm"
                       style={{ color: hoveredSkill === skill.name ? skill.color : "#a78bfa" }}
                     >
                       {counters[skill.name] || 0}%
                     </span>
                   </div>
-                  <div className="h-2.5 bg-gray-800 rounded-full overflow-hidden">
+                  <div className="h-1.5 sm:h-2 md:h-2.5 bg-gray-800 rounded-full overflow-hidden">
                     <div
                       className="h-full rounded-full transition-all duration-700 ease-out relative"
                       style={{
@@ -278,18 +272,16 @@ const SkillsSection = () => {
                   </div>
                 </div>
 
-                {/* Tags */}
-                <div className="mt-4 pt-3 border-t border-gray-700/30 flex gap-2">
-                  <span className={`text-xs px-2 py-0.5 rounded-full bg-${skill.category === "frontend" ? "cyan" : skill.category === "backend" ? "emerald" : skill.category === "mobile" ? "orange" : skill.category === "database" ? "green" : "pink"}-500/10 text-${skill.category === "frontend" ? "cyan" : skill.category === "backend" ? "emerald" : skill.category === "mobile" ? "orange" : skill.category === "database" ? "green" : "pink"}-400`}>
+                <div className="mt-3 sm:mt-4 pt-2 sm:pt-3 border-t border-gray-700/30 flex gap-1.5 sm:gap-2">
+                  <span className={`text-[9px] sm:text-xs px-1.5 sm:px-2 py-0.5 rounded-full bg-${skill.category === "frontend" ? "cyan" : skill.category === "backend" ? "emerald" : skill.category === "mobile" ? "orange" : skill.category === "database" ? "green" : "pink"}-500/10 text-${skill.category === "frontend" ? "cyan" : skill.category === "backend" ? "emerald" : skill.category === "mobile" ? "orange" : skill.category === "database" ? "green" : "pink"}-400`}>
                     {skill.category}
                   </span>
-                  <span className="text-xs px-2 py-0.5 rounded-full bg-gray-700/30 text-gray-400">
+                  <span className="text-[9px] sm:text-xs px-1.5 sm:px-2 py-0.5 rounded-full bg-gray-700/30 text-gray-400">
                     {skill.level}+%
                   </span>
                 </div>
 
-                {/* Hover Border Effect */}
-                <div className={`absolute inset-0 rounded-2xl border-2 transition-all duration-500 pointer-events-none ${
+                <div className={`absolute inset-0 rounded-xl sm:rounded-2xl border-2 transition-all duration-500 pointer-events-none ${
                   hoveredSkill === skill.name ? `border-opacity-100 scale-105` : "border-opacity-0 scale-100"
                 }`} style={{ borderColor: hoveredSkill === skill.name ? skill.color : "transparent" }} />
               </div>
@@ -297,9 +289,9 @@ const SkillsSection = () => {
           ))}
         </div>
 
-        {/* Stats Section - Enhanced */}
+        {/* Stats Section - Responsive */}
         <div
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 pt-8 border-t border-gray-800/50"
+          className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-5 lg:gap-6 mt-10 sm:mt-12 md:mt-14 lg:mt-16 pt-6 sm:pt-8 border-t border-gray-800/50"
           data-aos="fade-up"
           data-aos-delay="300"
         >
@@ -311,15 +303,15 @@ const SkillsSection = () => {
           ].map((stat, idx) => (
             <div
               key={idx}
-              className="group text-center p-5 rounded-2xl bg-gray-800/20 backdrop-blur-sm border border-gray-700/30 hover:border-indigo-500/30 transition-all duration-300 hover:-translate-y-1"
+              className="group text-center p-3 sm:p-4 md:p-5 rounded-xl sm:rounded-2xl bg-gray-800/20 backdrop-blur-sm border border-gray-700/30 hover:border-indigo-500/30 transition-all duration-300 hover:-translate-y-1"
             >
-              <div className={`w-12 h-12 mx-auto mb-3 rounded-xl bg-gradient-to-r ${stat.color} flex items-center justify-center text-white text-xl group-hover:scale-110 transition-transform duration-300`}>
+              <div className={`w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 mx-auto mb-2 sm:mb-3 rounded-lg sm:rounded-xl bg-gradient-to-r ${stat.color} flex items-center justify-center text-white text-base sm:text-xl md:text-2xl group-hover:scale-110 transition-transform duration-300`}>
                 {stat.icon}
               </div>
-              <div className={`text-2xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent mb-1`}>
+              <div className={`text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent mb-0.5 sm:mb-1`}>
                 {stat.value}
               </div>
-              <div className="text-gray-500 text-sm">{stat.label}</div>
+              <div className="text-gray-500 text-[10px] sm:text-xs md:text-sm">{stat.label}</div>
             </div>
           ))}
         </div>
