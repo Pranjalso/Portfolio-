@@ -81,7 +81,7 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="relative py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section id="contact" className="relative py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 overflow-x-hidden">
       {/* Background Decoration */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-64 sm:w-[400px] sm:h-[400px] md:w-[600px] md:h-[600px] bg-indigo-500/5 rounded-full blur-3xl" />

@@ -13,7 +13,7 @@ const ProjectCard = ({ imgSrc, title, description, techStack, githubLink, liveLi
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="relative w-[260px] xs:w-[280px] sm:w-[300px] md:w-[320px] lg:w-[340px] xl:w-[360px] bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm border border-gray-700/50 rounded-xl sm:rounded-2xl overflow-hidden shadow-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-indigo-500/20">
+      <div className="relative w-[240px] xs:w-[260px] sm:w-[280px] md:w-[300px] lg:w-[320px] xl:w-[340px] 2xl:w-[360px] bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm border border-gray-700/50 rounded-xl sm:rounded-2xl overflow-hidden shadow-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-indigo-500/20">
         
         {/* Image Container with Overlay */}
         <div className="relative h-40 xs:h-44 sm:h-48 md:h-52 overflow-hidden">

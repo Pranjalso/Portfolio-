@@ -99,7 +99,7 @@ const WorkExperience = () => {
     <>
       <section
         id="work"
-        className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-900 via-gray-900 to-gray-950"
+        className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-900 via-gray-900 to-gray-950 overflow-x-hidden"
       >
         <div className="max-w-6xl mx-auto">
           {/* Section Header - Responsive */}

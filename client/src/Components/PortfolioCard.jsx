@@ -57,7 +57,7 @@ const PortfolioCard = () => {
     <>
       {/* Navigation Menu Bar */}
       <nav
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 overflow-x-hidden ${
           scrolled
             ? "bg-gray-900/90 backdrop-blur-xl shadow-lg shadow-black/20 py-2 sm:py-3"
             : "bg-transparent py-3 sm:py-5"
@@ -113,7 +113,7 @@ const PortfolioCard = () => {
 
         {/* Mobile Navigation Menu */}
         <div
-          className={`md:hidden fixed top-[56px] sm:top-[72px] left-0 w-full bg-gray-900/95 backdrop-blur-xl border-b border-white/10 transition-all duration-300 overflow-hidden ${
+          className={`md:hidden absolute w-full bg-gray-900/95 backdrop-blur-xl border-b border-white/10 transition-all duration-300 overflow-hidden ${
             mobileMenuOpen ? "max-h-96 py-3 sm:py-4" : "max-h-0 py-0"
           }`}
         >
@@ -143,7 +143,7 @@ const PortfolioCard = () => {
       </nav>
 
       {/* Hero Section */}
-      <div className="min-h-screen flex flex-col lg:flex-row items-center justify-center gap-6 sm:gap-8 lg:gap-12 px-4 sm:px-6 pt-16 sm:pt-20 relative overflow-hidden">
+      <div className="min-h-screen flex flex-col lg:flex-row items-center justify-center gap-6 sm:gap-8 lg:gap-12 px-4 sm:px-6 pt-16 sm:pt-20 relative overflow-x-hidden">
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-20 left-10 w-48 h-48 sm:w-72 sm:h-72 bg-indigo-500/10 rounded-full blur-3xl animate-pulse" />

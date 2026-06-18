@@ -17,7 +17,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="w-[80vw]  mx-auto">
+    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <FloatingTechBackground />
       <PortfolioCard />
       <HomeCard />

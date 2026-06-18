@@ -140,7 +140,7 @@ const SkillsSection = () => {
     <section
       ref={sectionRef}
       id="skills"
-      className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden"
+      className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 overflow-x-hidden"
     >
       {/* Animated Background - Responsive Sizing */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -258,7 +258,7 @@ const SkillsSection = () => {
                       {counters[skill.name] || 0}%
                     </span>
                   </div>
-                  <div className="h-1.5 sm:h-2 md:h-2.5 bg-gray-800 rounded-full overflow-hidden">
+                  <div className="h-2 sm:h-2.5 md:h-3 bg-gray-800 rounded-full overflow-hidden">
                     <div
                       className="h-full rounded-full transition-all duration-700 ease-out relative"
                       style={{
