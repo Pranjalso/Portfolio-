@@ -56,7 +56,7 @@ const HomeCard = () => {
   ];
 
   return (
-    <section id="about" className="relative py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 overflow-x-hidden">
+    <section id="about" className="relative py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8">
       {/* Professional Background */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950" />
